@@ -44,6 +44,16 @@ window.addEventListener('DOMContentLoaded', () => {
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
+    {
+      q: 'What is 2 + 2 x 2=',
+      o: ['8', '6', '4', '2'],
+      a: 1,
+    },
+    {
+      q: 'What is the capital of New Zeland',
+      o: ['Auckland', 'Christchurch', 'Queenstown', 'Wellington'],
+      a: 3,
+    },
   ];
 
   // function to Display the quiz questions and answers from the object
@@ -52,7 +62,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let quizDisplay = '';
     quizArray.map((quizItem, index) => {
       quizDisplay += `<ul class="list-group">
-                   Q - ${quizItem.q}
+                    Q - ${quizItem.q}
                     <li class="list-group-item mt-2" id="li_${index}_0"><input type="radio" name="radio${index}" id="radio_${index}_0"> ${quizItem.o[0]}</li>
                     <li class="list-group-item" id="li_${index}_1"><input type="radio" name="radio${index}" id="radio_${index}_1"> ${quizItem.o[1]}</li>
                     <li class="list-group-item"  id="li_${index}_2"><input type="radio" name="radio${index}" id="radio_${index}_2"> ${quizItem.o[2]}</li>
@@ -79,6 +89,9 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         if (radioElement.checked) {
+          if (quizItem.a === i){
+          score++;
+          }
           // code for task 1 goes here
         }
       }
