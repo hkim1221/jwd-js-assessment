@@ -44,6 +44,7 @@ window.addEventListener('DOMContentLoaded', () => {
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
+    //Task 3 add 2 more questions 
     {
       q: 'What is 2 + 2 x 2=',
       o: ['8', '6', '4', '2'],
@@ -73,9 +74,10 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+
   // Calculate the score
+  let score = 0;
   const calculateScore = () => {
-    let score = 0;
     quizArray.map((quizItem, index) => {
       for (let i = 0; i < 4; i++) {
         //highlight the li if it is the correct answer
@@ -86,18 +88,49 @@ window.addEventListener('DOMContentLoaded', () => {
 
         if (quizItem.a == i) {
           //change background color of li element here
+          liElement.style.background = 'yellow';
         }
-
-        if (radioElement.checked) {
-          if (quizItem.a === i){
-          score++;
-          }
           // code for task 1 goes here
+        if (radioElement.checked && quizItem.a == i) {
+          score++;
         }
       }
     });
+    const displayScore = document.querySelector("#score");
+    displayScore.innerHTML = "Yor Quiz Score is " + score;
   };
+
 
   // call the displayQuiz function
   displayQuiz();
+
+
+  const submit = document.querySelector('#btnSubmit');
+  const reset = document.querySelector("#btnReset");
+// when click submit button (task 2)
+  submit.addEventListener("click", (e) => {
+  e.preventDefault;
+  calculateScore();
+  });
+//when click reset button (task 4)
+  reset.addEventListener ("click", (e) => {
+    e.preventDefault;
+    location.reload();
+  });
+  //countdown timer (task 5)
+  let count = 60;
+  const interval = setInterval(function () {
+    time = document.getElementById("time");
+    time.innerHTML = count;
+    count--;
+    if (count === 0) {
+      clearInterval(interval);
+      time.innerHTML = `${count}: Time is up!`;
+      calculateScore();
+    }
+  }, 1000);
+
 });
+
+
+
